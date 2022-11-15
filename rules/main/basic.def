@@ -28,9 +28,7 @@ def check_shadow	# var name shadows fct name
 			&&  @ident
 			&&  Fct[.txt] > 0)
 			{	q = .nxt;
-				if (q.txt != "("
-				&&  q.txt != ","
-				&&  q.txt != ")"
+				if (q.txt == "=" # makes more sense as using fct on rhs is just a fct ptr
 				&&  Reported[.txt] == 0)
 				{	Reported[.txt]++;
 					.mark = 1;
