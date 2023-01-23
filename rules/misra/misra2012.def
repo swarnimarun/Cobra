@@ -515,13 +515,13 @@ def m12_rule16_2
 end
 
 def m12_rule16_3
-	r; m case; s top case; c \;; c no switch; c no break
+	r; m case; s top case; c \;; c no switch; c no break; c no return
 	>1
-	r; m case; s top default; c \;; c no switch; c no break
+	r; m case; s top default; c \;; c no switch; c no break; c no return
 	<|1
 	>1
 	r; m case; s up };
-	c \;; c no case; c no default; c no switch; c no break
+	c \;; c no case; c no default; c no switch; c no break; c no return
 	<|1
 	ps create M12_R16_3
 	ps caption M12_R16_3 (Required) An unconditional break stmnt shall terminate every switch-clause
