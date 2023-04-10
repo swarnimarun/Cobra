@@ -27,8 +27,11 @@ LIBW?=-lpthread		# cygwin
 LIBM?=			# mac
 
 CC?=gcc
-CFLAGS=-I. -Wall ${F} -pedantic -Werror -Wshadow -std=c99 -DYY_NO_INPUT -Wformat-truncation=1
-CFLAGSMAC=-I. -Wall ${F} -pedantic -Werror -Wshadow -std=c99 -DYY_NO_INPUT
+CFLAGS=-I. -Wall ${F} -pedantic -Werror -Wshadow -std=c99 -DYY_NO_INPUT
+UNAME_S=$(shell uname -s)
+ifeq ($(UNAME_S),Linux)
+	CFLAGS += -Wformat-truncation=1
+endif
 
 # adding -DPC uses "dotty" instead of "dot -Tx11" for dot displays
 # adjusts the memory allocator to be more PC friendly
@@ -43,7 +46,7 @@ cygwin:	$(OS)
 	$(CC) $(CFLAGS) -o cobra $(OS) $(LIBW)
 
 mac:	$(OS)
-	$(CC) $(CFLAGSMAC) -o cobra $(OS) $(LIBM)
+	$(CC) $(CFLAGS) -o cobra $(OS) $(LIBM)
 
 app:	c.ar $(APP)/c_api.h
 	cd $(APP); make
